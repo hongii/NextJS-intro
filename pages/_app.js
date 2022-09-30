@@ -8,7 +8,7 @@ export default function App({ Component, pageProps }) {
 		<>
 			<Layout>
 				<Component {...pageProps} />
-				<span>Hello, global</span>
+				{/* <span>Hello, global</span> */}
 			</Layout>
 			{/* styled jsx를 사용한 global css style */}
 			<style jsx global>{`
