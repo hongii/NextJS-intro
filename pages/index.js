@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Seo from "../components/Seo";
 import styles from "../styles/Home.module.css";
 
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+// const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
 export default function Home() {
 	const [movies, setMovies] = useState([]);
@@ -15,7 +15,7 @@ export default function Home() {
 
 	const fetchData = async () => {
 		try {
-			const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=ko-KR`);
+			const response = await axios.get("/api/movies");
 			setMovies(response.data.results);
 			console.log(response);
 		}
