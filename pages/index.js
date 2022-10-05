@@ -13,7 +13,7 @@ export default function Home({ movies}) {
 					if (movie.poster_path !== null) {
 						return (
 							<div className={styles.movie} key={movie.id} >
-								<img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
+								<img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
 								<h4>{movie.original_title}</h4>
 							</div>
 						)
