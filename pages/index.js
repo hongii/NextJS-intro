@@ -1,5 +1,6 @@
 import axios from "axios";
 import Head from "next/head";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import Seo from "../components/Seo";
 import styles from "../styles/Home.module.css";
@@ -32,10 +33,37 @@ export default function Home() {
 				movies?.map((movie) => {
 					if (movie.poster_path !== null) {
 						return (
-							<div className={styles.movie} key={movie.id} >
-								<img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
-								<h4>{movie.original_title}</h4>
-							</div>
+							/* router를 통해 state를 숨겨서 전달하는 방법
+							Link의 href 속성에 들어간 pathname, query..는 useRouter에 의해 생성된 router.push()에서도 동일한 용도로 사용 가능하다.
+							router.push(
+							{ //url
+								pathname: `/movies/${movie.id}`,
+								query: {
+											title: movie.original_title,
+										},
+							},
+
+							//as => url을 masking 한다.
+							`/movies/${movie.id}`
+							); */
+							<Link
+								href={
+									{
+										pathname: `/movies/${movie.id}`,
+										query: {
+											title: movie.original_title,
+										}
+									}}
+								as={`/movies/${movie.id}`}
+								key={movie.id}>
+								<a>
+									<div className={styles.movie}  >
+										<img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
+										<h4>{movie.original_title}</h4>
+									</div>
+								</a>
+
+							</Link>
 						)
 					}
 				})
